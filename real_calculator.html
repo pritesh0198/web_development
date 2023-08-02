@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            margin-top: 15%;
+        }
+
+        .calculator {
+            width: 200px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 2px solid #ccc;
+            text-align: center;
+            background-color: #120e0030;
+        }
+
+        .display {
+            width: 100%;
+            height: 30px;
+            border: 2px solid #ccc;
+            text-align: right;
+            background-color: #eee;
+            margin-bottom: 15px;
+            background-color: black;
+            color: white;
+        }
+
+        .button {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #686868;
+            margin: 1px;
+            color: #ffffff;
+            background-color: #000000;
+            font-size: 16px;
+
+            &:hover {
+                background-color: #7b7b7b;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="display"></div>
+        <button class="button">7</button>
+        <button class="button">8</button>
+        <button class="button">9</button>
+        <button class="button">+</button>
+        <button class="button">4</button>
+        <button class="button">5</button>
+        <button class="button">6</button>
+        <button class="button">-</button>
+        <button class="button">1</button>
+        <button class="button">2</button>
+        <button class="button">3</button>
+        <button class="button">*</button>
+        <button class="button">0</button>
+        <button class="button">.</button>
+        <button class="button">=</button>
+        <button class="button">AC</button>
+    </div>
+    <script>
+        function clearDisplay() {
+            document.querySelector(".display").innerHTML = "";
+        }
+
+        function addNumber(number) {
+            document.querySelector(".display").innerHTML += number;
+        }
+
+        function calculate() {
+            var expression = document.querySelector(".display").innerHTML;
+            var result = eval(expression);
+            document.querySelector(".display").innerHTML = result;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var buttons = document.querySelectorAll(".button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener("click", function () {
+                    var buttonValue = this.innerHTML;
+                    if (buttonValue == "AC") {
+                        clearDisplay();
+                    } else if (buttonValue == "=") {
+                        calculate();
+                    } else {
+                        addNumber(buttonValue);
+                    }
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
